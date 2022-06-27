@@ -12,7 +12,9 @@ var gCtx = gCanvas.getContext("2d");
 
 class Shape {
   constructor(width, height, fillcolor) {
-    (this.width = width), (this.height = height), (this.fillcolor = fillcolor);
+    this.width = width;
+    this.height = height;
+    this.fillcolor = fillcolor;
   }
 
   get description() {
@@ -28,8 +30,9 @@ class Shape {
     gCtx.strokeStyle = this.fillcolor;
     gCtx.strokeRect(x, y, this.width, this.height);
   }
-  printTxt(txt, x, y) {
+  printTxt(x, y) {
     gCtx.font = "50px serif";
+    const txt = this.txt;
     gCtx.strokeText(txt, x, y, gCanvas.width);
   }
 }
@@ -45,14 +48,49 @@ class Rect extends Shape {
 }
 
 class Txt extends Shape {
-  constructor(shapename, width, height, fillcolor) {
+  constructor(txt, width, height, fillcolor) {
     super(width, height, fillcolor);
+    this.txt = txt;
+  }
+
+  get dimentiond() {
+    return gCtx.measureText(this.txt);
+  }
+  printTxtOutline(x, y, color = "red") {
+    const {
+      width,
+      fontBoundingBoxAscent: fontAscent,
+      fontBoundingBoxDescent: fontDescent
+    } = this.dimentiond;
+    gCtx.strokeStyle = color;
+
+    gCtx.strokeRect(
+      x - fontDescent,
+      y - fontAscent,
+      width + fontDescent * 2,
+      fontAscent
+    );
   }
 }
 
-const txt1 = new Txt("txt", 100, 100, "black");
+const txt1 = new Txt("new line 222", 100, 100, "black");
 console.log(txt1);
-txt1.printTxt("hello world", 100, 250);
+txt1.printTxt(100, 250);
+console.log(txt1.dimentiond);
+const {
+  width,
+  fontBoundingBoxAscent: fontAscent,
+  fontBoundingBoxDescent: fontDescent
+} = txt1.dimentiond;
+console.log(width);
 
 const rect1 = new Rect("rect", 100, 100, "red");
-console.log(rect1.printRect(100, 100));
+// console.log(rect1.printRect(100, width - fontAscent));
+
+// gCtx.strokeRect(
+//   100 - fontDescent,
+//   250 - fontAscent ,
+//   width + fontDescent * 2,
+//   fontAscent
+// );
+txt1.printTxtOutline(100, 250, "lightblue");
