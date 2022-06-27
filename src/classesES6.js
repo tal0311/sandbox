@@ -1,5 +1,7 @@
 import "./styles.css";
 
+const gApp = document.querySelector("#app");
+
 document.getElementById("app").innerHTML = `
 <h1>classes ES6!</h1>
 <div>
@@ -9,6 +11,13 @@ document.getElementById("app").innerHTML = `
 
 var gCanvas = document.querySelector("canvas");
 var gCtx = gCanvas.getContext("2d");
+
+gCanvas.addEventListener("click", canvasClick);
+
+function canvasClick({ offsetX: x, offsetY: y }) {
+  var line = new Txt("new line", x, y);
+  console.log(line);
+}
 
 class Shape {
   constructor(width, height, fillcolor) {
@@ -37,10 +46,6 @@ class Shape {
   }
 }
 
-// const shape1 = new shape("rect", 100, 100, "red");
-// // shape1.color = "black";
-// console.log(shape1.printShape(100, 100));
-
 class Rect extends Shape {
   constructor(shapename, width, height, fillcolor) {
     super(width, height, fillcolor);
@@ -48,9 +53,15 @@ class Rect extends Shape {
 }
 
 class Txt extends Shape {
-  constructor(txt, width, height, fillcolor) {
-    super(width, height, fillcolor);
+  constructor(txt, x, y, fillcolor = "blue") {
+    super();
     this.txt = txt;
+    this.x = x;
+    this.y = y;
+    this.fillcolor = fillcolor;
+  }
+  set txtValue(value) {
+    this.txt += value;
   }
 
   get dimentiond() {
@@ -72,25 +83,3 @@ class Txt extends Shape {
     );
   }
 }
-
-const txt1 = new Txt("new line 222", 100, 100, "black");
-console.log(txt1);
-txt1.printTxt(100, 250);
-console.log(txt1.dimentiond);
-const {
-  width,
-  fontBoundingBoxAscent: fontAscent,
-  fontBoundingBoxDescent: fontDescent
-} = txt1.dimentiond;
-console.log(width);
-
-const rect1 = new Rect("rect", 100, 100, "red");
-// console.log(rect1.printRect(100, width - fontAscent));
-
-// gCtx.strokeRect(
-//   100 - fontDescent,
-//   250 - fontAscent ,
-//   width + fontDescent * 2,
-//   fontAscent
-// );
-txt1.printTxtOutline(100, 250, "lightblue");
