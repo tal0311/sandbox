@@ -17,15 +17,21 @@ function addlistenerts() {
   elPrev.addEventListener("click", () => movePage(-1));
   elNext.addEventListener("click", () => movePage(1));
 }
-const perPage = 2;
-var pageNum = 0;
+const PAGE_SIZE = 2;
+
+var filterBY = {
+  page: 0
+};
 function movePage(val) {
   console.log();
-  console.log(val, pageNum);
+  // console.log(val);
   renderPerson();
-  pageNum = pageNum + perPage * val;
+  console.log(filterBY);
+  getForDisplay();
+  filterBY.page += val;
 }
-const people = [
+
+var people = [
   {
     id: "101",
     name: "person1",
@@ -59,11 +65,16 @@ const people = [
 ];
 
 function getForDisplay() {
-  return people.slice(pageNum, pageNum + perPage);
+  if (filterBY) {
+    var startIdx = filterBY.page * PAGE_SIZE;
+    console.log("startIdx:", startIdx);
+
+    return people.slice(startIdx, startIdx + PAGE_SIZE);
+  }
 }
 
 function renderPerson() {
-  const people = getForDisplay();
+  var people = getForDisplay();
   const srtHTMLs = people.map((person) => {
     return `
     <article>
