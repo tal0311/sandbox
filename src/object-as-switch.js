@@ -2,33 +2,29 @@
 // console.log(getOpt("date")); //Tue Jun 14 2022 23:19:54 GMT+0300 (Israel Daylight Time)
 // console.log(getOpt("good")); // default
 
-var currRoute = {
-  path: "mail",
-  tab: "",
-  get fullPtah() {
-    return this.path + "/" + this.tab;
-  }
+var critirea = {
+  name: "mail",
+  price: 39
 };
 
-var res = getOpt("lla");
-console.log(res);
+var res = getOpt("name", "lala");
 
 // getOpt("setTub")("sent");
 
-function getOpt(type) {
+function getOpt(type, value) {
   var options = {
-    setName(value) {
-      currRoute.path = value;
+    name: (critirea.name = value),
+    price(value) {
+      console.log(critirea.price);
     },
-    setTub(value) {
-      currRoute.tab = value;
-    },
-    defulat: currRoute
+    defulat: critirea
   };
 
   // console.log(options[type]);
 
   return options[type] ? options[type] : options["defulat"];
 }
+
+console.log(critirea);
 
 // console.log(currRoute.fullPtah);

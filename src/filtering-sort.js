@@ -1,12 +1,17 @@
 var state = {
-  filterBy: {},
+  filterBy: {
+    toSort: -1,
+    title: "",
+    isDone: null
+  },
   todos: [],
-  pageSize: 2
+  pageSize: 2,
+  pageIdx: 0
 };
 
 filteredTodos(state);
 
-function filteredTodos({ filterBy, todos, pageSize }) {
+function filteredTodos({ filterBy, todos, pageSize, pageIdx }) {
   if (!todos) return;
 
   const regex = new RegExp(filterBy.title, "i");
@@ -23,7 +28,7 @@ function filteredTodos({ filterBy, todos, pageSize }) {
   }
   console.log(filteredTodos);
 
-  const startIdx = filterBy.pageIdx * pageSize;
+  const startIdx = pageIdx * pageSize;
 
   filteredTodos = filteredTodos.slice(startIdx, startIdx + pageSize);
   console.log(filteredTodos);
