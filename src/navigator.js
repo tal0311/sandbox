@@ -7,6 +7,7 @@ var app = (document.getElementById("app").innerHTML = `
   info about Parcel 
   <br>
   <span>clipme</span>
+  <audio id="audio" controls></audio>
   <br>
   <video width="200" height="200" id="video"></video>
   <canvas width="200" height="200" id="canvas" ></canvas>
@@ -42,16 +43,28 @@ const myNavigator = {
     });
   },
   media(options, attributes) {
-    navigator.mediaDevices.getUserMedia(options).then((stream) => {
-      if (options.video) {
-        const video = document.querySelector("#video");
-        if (attributes.controls) video.setAttribute("controls", "true");
-        if (attributes.autoplay) video.setAttribute("autoplay", "true");
-        video.srcObject = stream;
-      }
-      if (options.audio) {
-        console.log("sudio");
-      }
+    return new Promise((resolve, reject) => {
+      navigator.mediaDevices.getUserMedia(options).then((stream) => {
+        if (options.video) {
+          const video = document.querySelector("#video");
+          if (attributes.controls) video.setAttribute("controls", "true");
+          if (attributes.autoplay) video.setAttribute("autoplay", "true");
+          video.srcObject = stream;
+        }
+        if (options.audio) {
+          console.log("sudio");
+          const mediaStrem = new MediaRecorder(stream);
+          console.log(mediaStrem);
+          resolve({
+            start(time) {
+              mediaStrem.start(time);
+            },
+            stop() {
+              mediaStrem.stop();
+            }
+          });
+        }
+      });
     });
   },
   captureImg() {
@@ -66,7 +79,7 @@ const myNavigator = {
 // clip.addEventListener("click", clipMe);
 
 const options = {
-  video: true,
+  video: false,
   audio: true
 };
 
@@ -76,4 +89,10 @@ const attributes = {
   controls: false,
   autoplay: true
 };
-// myNavigator.media(options, attributes);
+const object = myNavigator.media(options, attributes).then((res) => res);
+
+const recording = object.then((res) => {
+  res.start(5000);
+});
+
+const record = new Blob();
