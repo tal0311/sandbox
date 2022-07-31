@@ -9,8 +9,6 @@ var critirea = {
 
 var res = getOpt("name", "lala");
 
-// getOpt("setTub")("sent");
-
 function getOpt(type, value) {
   var options = {
     name: (critirea.name = value),
