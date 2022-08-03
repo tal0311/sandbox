@@ -1,24 +1,50 @@
 // remove str duplicatnts
-var str = "abbbbccdddeeeeeaa";
+// var str = "abbbbccdddeeeeeaa";
 
-var mapChar = removeDups(str);
+// console.log(removeDups(str));
+// function removeDups(str) {
+//   for (let i = 0; i < str.length; i++) {}
+// }
 
-function removeDups(str) {
-  return str.split("").reduce((acc, curr) => {
-    acc[curr] ? (acc[curr] = acc[curr] + 1) : (acc[curr] = 1);
-    return acc;
-  }, {});
-}
+// roman letters
+// I             1
+// V             5
+// X             10
+// L             50
+// C             100
+// D             500
+// M             1000
+// For example, 2 is written as II in Roman numeral, just two ones added together.
+//  12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
 
-console.log(makeStr(mapChar));
-function makeStr(mapChar) {
-  const dups = [];
-  const mat = Object.entries(mapChar);
-  mat.map((entry) => {
-    const length = entry[1] > 3 ? 3 : entry[1];
-    for (let i = 0; i < length; i++) {
-      dups.push(entry[0]);
-    }
-  });
-  return dups.join("");
-}
+// Roman numerals are usually written largest to smallest from left to right.
+//  However, the numeral for four is not IIII. Instead, the number four is written as IV.
+//  Because the one is before the five we subtract it making four.
+//  The same principle applies to the number nine, which is written as IX.
+//  There are six instances where subtraction is used:
+
+// I can be placed before V (5) and X (10) to make 4 and 9.
+// X can be placed before L (50) and C (100) to make 40 and 90.
+// C can be placed before D (500) and M (1000) to make 400 and 900.
+// Given a roman numeral, convert it to an integer.
+
+const s = "MCMXCIV";
+const romanToInt = (s) => {
+  const integers = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  };
+
+  return s.split("").reduce((acc, item, idx, arr) => {
+    return integers[arr[idx]] < integers[arr[idx + 1]]
+      ? acc - integers[item]
+      : acc + integers[item];
+  }, 0);
+};
+
+console.log("res:", romanToInt(s));
