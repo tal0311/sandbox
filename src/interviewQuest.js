@@ -28,23 +28,68 @@
 // C can be placed before D (500) and M (1000) to make 400 and 900.
 // Given a roman numeral, convert it to an integer.
 
-const s = "MCMXCIV";
-const romanToInt = (s) => {
-  const integers = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000
-  };
+// const s = "MCMXCIV";
+// const romanToInt = (s) => {
+//   const integers = {
+//     I: 1,
+//     V: 5,
+//     X: 10,
+//     L: 50,
+//     C: 100,
+//     D: 500,
+//     M: 1000
+//   };
 
-  return s.split("").reduce((acc, item, idx, arr) => {
-    return integers[arr[idx]] < integers[arr[idx + 1]]
-      ? acc - integers[item]
-      : acc + integers[item];
-  }, 0);
-};
+//   return s.split("").reduce((acc, item, idx, arr) => {
+//     return integers[arr[idx]] < integers[arr[idx + 1]]
+//       ? acc - integers[item]
+//       : acc + integers[item];
+//   }, 0);
+// };
 
-console.log("res:", romanToInt(s));
+// console.log("res:", romanToInt(s));
+
+// LONG COMMON PREFIX
+// Write a function to find the longest common prefix string amongst an array of strings.
+// If there is no common prefix, return an empty string "".
+
+const strs = ["flower", "flow", "flight"];
+// const strs = ["dog", "racecar", "car"];
+
+const res = getCommonPrefix(strs);
+console.log("res:", res);
+
+function getCommonPrefix(strs) {
+  const chars = strs.reduce((acc, item, idx) => {
+    if (acc[idx] !== acc[idx + 1]) {
+      acc.pop();
+    } else {
+      acc[idx] = item.charAt(0);
+    }
+    return acc;
+  }, []);
+
+  console.log(chars);
+
+  // console.log(common);
+
+  // return common;
+}
+// const res = getCommonPrefix(strs);
+// console.log("res:", res);
+
+// function getCommonPrefix(strs) {
+//   const stack = [];
+
+//   strs.forEach((str) => {
+//     console.log(str.charAt(0));
+
+//     if (stack.length && stack.length - 1 === str.charAt(0)) {
+//       stack.push(str.charAt(0));
+//     } else {
+//       stack.push(str.charAt(0));
+//     }
+//   });
+
+//   return stack.length === 1 ? stack[0] : "";
+// }
