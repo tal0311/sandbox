@@ -56,40 +56,44 @@
 const strs = ["flower", "flow", "flight"];
 // const strs = ["dog", "racecar", "car"];
 
-const res = getCommonPrefix(strs);
-console.log("res:", res);
-
-function getCommonPrefix(strs) {
-  const chars = strs.reduce((acc, item, idx) => {
-    if (acc[idx] !== acc[idx + 1]) {
-      acc.pop();
-    } else {
-      acc[idx] = item.charAt(0);
-    }
-    return acc;
-  }, []);
-
-  console.log(chars);
-
-  // console.log(common);
-
-  // return common;
-}
 // const res = getCommonPrefix(strs);
 // console.log("res:", res);
 
 // function getCommonPrefix(strs) {
-//   const stack = [];
-
-//   strs.forEach((str) => {
-//     console.log(str.charAt(0));
-
-//     if (stack.length && stack.length - 1 === str.charAt(0)) {
-//       stack.push(str.charAt(0));
+//   strs.sort();
+//   const chars = strs.reduce((acc, item, idx) => {
+//     if (acc.length && acc[idx] === strs[idx + 1]) {
+//       acc[idx] = item.charAt(0);
 //     } else {
-//       stack.push(str.charAt(0));
+//       acc[idx] = item.charAt(0);
 //     }
-//   });
+//     return acc;
+//   }, []);
 
-//   return stack.length === 1 ? stack[0] : "";
+//   console.log(chars);
+
+//   // console.log(common);
+
+//   // return common;
 // }
+const res = getCommonPrefix(strs);
+console.log("res:", res);
+
+function getCommonPrefix(strs) {
+  let stack = [];
+
+  strs.forEach((str) => {
+    var currChat = str.charAt(0);
+    if (stack.length && stack[stack.lneght - 1] === currChat) {
+      stack.push(currChat);
+    } else if (stack.at(-1) !== currChat) {
+      stack.pop();
+      stack.push(currChat);
+    } else {
+      stack.push(currChat);
+    }
+  });
+  console.log(stack);
+
+  return stack.length > 1 ? stack[0] : "";
+}
