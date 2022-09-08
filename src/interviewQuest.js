@@ -53,9 +53,6 @@
 // Write a function to find the longest common prefix string amongst an array of strings.
 // If there is no common prefix, return an empty string "".
 
-const strs = ["flower", "flow", "flight"];
-// const strs = ["dog", "racecar", "car"];
-
 // const res = getCommonPrefix(strs);
 // console.log("res:", res);
 
@@ -76,24 +73,44 @@ const strs = ["flower", "flow", "flight"];
 
 //   // return common;
 // }
-const res = getCommonPrefix(strs);
-console.log("res:", res);
+// const res = getCommonPrefix(strs);
+// console.log("res:", res);
 
-function getCommonPrefix(strs) {
-  let stack = [];
+// function getCommonPrefix(strs) {
+//   let stack = [];
 
-  strs.forEach((str) => {
-    var currChat = str.charAt(0);
-    if (stack.length && stack[stack.lneght - 1] === currChat) {
-      stack.push(currChat);
-    } else if (stack.at(-1) !== currChat) {
-      stack.pop();
-      stack.push(currChat);
-    } else {
-      stack.push(currChat);
-    }
-  });
-  console.log(stack);
+//   strs.forEach((str) => {
+//     var currChat = str.charAt(0);
+//     if (stack.length && stack[stack.lneght - 1] === currChat) {
+//       stack.push(currChat);
+//     } else if (stack.at(-1) !== currChat) {
+//       stack.pop();
+//       stack.push(currChat);
+//     } else {
+//       stack.push(currChat);
+//     }
+//   });
+//   console.log(stack);
 
-  return stack.length > 1 ? stack[0] : "";
-}
+//   return stack.length > 1 ? stack[0] : "";
+// }
+
+const mails = [
+  { tab: "inbox", content: "some content" },
+  { tab: "inbox", content: "some content" },
+  { tab: "sent", content: "some content" },
+  { tab: "trash", content: "some content" },
+  { tab: "draft", content: "some content" },
+  { tab: "important", content: "some content" }
+];
+console.log("ok");
+
+const labels = mails.reduce((acc, curr) => {
+  let { tab } = curr;
+  console.log(tab);
+
+  acc[tab] = acc[tab] ? acc[tab] + 1 : 1;
+  return acc;
+}, {});
+
+console.log(labels);

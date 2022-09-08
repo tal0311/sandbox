@@ -38,3 +38,4 @@ const list = async (list) => list.map((item) => item.toLowerCase());
 // pipe([makeStrs, list], 'FIRST,SECOND').then(res => console.log(res))
 
 const pipe = async (fns, seed = undefined) => {};
+console.log("ok");
