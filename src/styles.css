@@ -2,6 +2,12 @@ body {
   font-family: sans-serif;
 }
 
+.canvas-container {
+  margin-top: 3rem;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+}
 canvas {
-  border: 1px solid black;
+  /* padding: 1rem 2rem; */
+  box-shadow: -3px 1px 15px 10px #cccaca;
 }

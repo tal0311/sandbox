@@ -95,22 +95,35 @@
 //   return stack.length > 1 ? stack[0] : "";
 // }
 
-const mails = [
-  { tab: "inbox", content: "some content" },
-  { tab: "inbox", content: "some content" },
-  { tab: "sent", content: "some content" },
-  { tab: "trash", content: "some content" },
-  { tab: "draft", content: "some content" },
-  { tab: "important", content: "some content" }
-];
-console.log("ok");
+// const mails = [
+//   { tab: "inbox", content: "some content" },
+//   { tab: "inbox", content: "some content" },
+//   { tab: "sent", content: "some content" },
+//   { tab: "trash", content: "some content" },
+//   { tab: "draft", content: "some content" },
+//   { tab: "important", content: "some content" }
+// ];
+// console.log("ok");
 
-const labels = mails.reduce((acc, curr) => {
-  let { tab } = curr;
-  console.log(tab);
+// const labels = mails.reduce((acc, curr) => {
+//   let { tab } = curr;
+//   console.log(tab);
 
-  acc[tab] = acc[tab] ? acc[tab] + 1 : 1;
-  return acc;
-}, {});
+//   acc[tab] = acc[tab] ? acc[tab] + 1 : 1;
+//   return acc;
+// }, {});
 
-console.log(labels);
+// console.log(labels);
+
+// var str = "SOME UPPARE CASE STR";
+var str = "someMIX G hghg GY fddFFF";
+var res = isUpperCase(str);
+console.log(res);
+
+function isUpperCase(str) {
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    if (char.toUpperCase() !== char) return false;
+  }
+  return true;
+}
