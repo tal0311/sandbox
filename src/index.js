@@ -39,13 +39,3 @@ document.getElementById("app").innerHTML = `
 
 // const pipe = async (fns, seed = undefined) => {};
 // console.log("ok");
-
-var names = {
-  yotam: 2,
-  tal: 0
-};
-
-var name = "yotam";
-
-console.log(names[name]++);
-console.log(names);

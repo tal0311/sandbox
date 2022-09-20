@@ -116,14 +116,70 @@
 // console.log(labels);
 
 // var str = "SOME UPPARE CASE STR";
-var str = "someMIX G hghg GY fddFFF";
-var res = isUpperCase(str);
-console.log(res);
+// var str = "someMIX G hghg GY fddFFF";
+// var res = isUpperCase(str);
+// console.log(res);
 
-function isUpperCase(str) {
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
-    if (char.toUpperCase() !== char) return false;
-  }
-  return true;
+// function isUpperCase(str) {
+//   for (let i = 0; i < str.length; i++) {
+//     const char = str[i];
+//     if (char.toUpperCase() !== char) return false;
+//   }
+//   return true;
+// }
+
+// var lands = [
+//   "OXOOO",
+//   "OOXXX",
+//   "OXXOO",
+//   "XOOOO",
+//   "XOOOO",
+//   "XXXOO",
+//   "XOXOO",
+//   "OOOXO",
+//   "OXOOX",
+//   "XOOOO",
+//   "OOOXO"
+// ];
+
+// countLand(lands);
+// function countLand(lands) {
+//   var landCount = 0;
+//   lands.forEach((item) => {
+//     for (let i = 0; i < item.length; i++) {
+//       const land = item[i];
+//       if (land) landCount++;
+//     }
+//   });
+//   console.log(landCount);
+// }
+
+// "()"              =>  true
+// ")(()))"          =>  false
+// "("               =>  false
+// "(())((()())())"  =>  true
+
+// var str = "(())((()())())";
+// console.log(getpairs(str));
+// function getpairs(str) {
+//   var pri = "(";
+//   var sec = ")";
+//   if (str.charAt(0) !== pri && str.charAt(str.length - 1) !== sec) return false;
+//   for (let i = 0; i < str.length; i++) {
+//     var char = str.charAt(i);
+//     var charAtLast = str.charAt(str.length - i - 1);
+//     console.log("char", char);
+//     console.log("charatlast", charAtLast === sec);
+//     if (char !== pri || charAtLast !== sec) return false;
+//     str = str.substring(i, str.length - i - 1);
+//     // console.log(str);
+
+//     // if (char === pri && charAtLast) return false;
+//   }
+// }
+
+var args = [1, 2, 3, 4];
+sum(...args);
+function sum() {
+  return Object.values(arguments).reduce((acc, curr) => acc + curr);
 }
