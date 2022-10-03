@@ -183,3 +183,5 @@ sum(...args);
 function sum() {
   return Object.values(arguments).reduce((acc, curr) => acc + curr);
 }
+
+console.log("ok");
